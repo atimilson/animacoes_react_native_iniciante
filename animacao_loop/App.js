@@ -9,11 +9,32 @@ export default function App() {
   useEffect(()=> {
 
     Animated.loop(
-      Animated.timing(larAnimada, {
-        toValue: 300,
-        duration: 2000,
-        useNativeDriver: false
-      })
+      Animated.parallel([
+        Animated.sequence([
+          Animated.timing(larAnimada, {
+            toValue: 300,
+            duration: 2000,
+            useNativeDriver: false
+          }),
+          Animated.timing(larAnimada, {
+            toValue: 150,
+            duration: 2000,
+            useNativeDriver: false
+          })
+        ]),
+        Animated.sequence([
+          Animated.timing(altAnimada, {
+            toValue: 200,
+            duration: 2000,
+            useNativeDriver: false
+          }),
+          Animated.timing(altAnimada, {
+            toValue: 50,
+            duration: 2000,
+            useNativeDriver: false
+          })
+        ])
+      ])     
     ).start();
 
   }, []);
@@ -27,7 +48,9 @@ export default function App() {
         height: altAnimada,
         backgroundColor: '#4169e1',
         justifyContent: 'center',
-        opacity: opacidadeAnimada
+        opacity: opacidadeAnimada,
+        borderRadius : 50
+
       }}
       >
         <Text style={{ textAlign: 'center', fontSize: 22, color: '#FFF'}}>Carregando...</Text>
